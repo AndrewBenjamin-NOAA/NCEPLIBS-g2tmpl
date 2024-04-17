@@ -4,6 +4,8 @@
 ! Edward Hartnett 4/16/24
 Program test_g2tmpl_pdt4_9
   use grib2_all_tables_module
+  implicit none
+  
   integer(4) :: ipdstmpl8(29)
   integer(4) :: icatg,iparm,hrs_obs_cutoff,min_obs_cutoff,fcst_time, &
        scale_fac1,scaled_val1,scale_fac2,scaled_val2
@@ -17,10 +19,8 @@ Program test_g2tmpl_pdt4_9
 
   integer(4) :: ipdstmpl8_old(29)=(/2, 220, 2, 0, 84, 0, 0, 1, 10, 100, 0, 20000, 100, &
        0, 300000, 2017, 03, 09, 12, 0, 0, 1, 0, 2, 2, 1, 1, 255, 0/)
+  integer ipdsnum, ipdstmpllen, j
 
-  !       PRODUCT TEMPLATE 4. 8
-  !       2 220 2 0 84 0 0  1 10 100 0 20000 100 0 300000 2017 03 09 12 0 0 1 0 2 2 1 1 255 0
-  !
   icatg=2
   iparm=220
   typ_gen_proc_key='fcst'
