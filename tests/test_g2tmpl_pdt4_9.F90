@@ -21,15 +21,47 @@ Program test_g2tmpl_pdt4_9
        type_of_stat_proc, type_of_time_inc, &
        stat_unit_time_key, stat_unit_time_key_succ
   
-  integer(4) :: ipdstmpl9_old(36)=(/2, 220, 2, 0, 84, 0, 0, 1, 10, 100, 0, 20000, 100, &
-       0, 300000, 2017, 03, 09, 12, 0, 0, 1, 0, 2, 2, 1, 1, 255, 0, 0, 0, 0, 0, 0, 0, 0/)
+  integer(4) :: ipdstmpl9_old(36)=(/ 2, 220, 0, 0, 0, 0, 0, 0, 0, 255, 0, 0, &
+       255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 /)
   integer ipdsnum, ipdstmpllen, j
 
   print *, 'Testing g2sec4_temp9...' 
 
   icatg=2
   iparm=220
-
+  typ_gen_proc_key = 'anal'
+  gen_proc_or_mod_key = 'res'
+  hrs_obs_cutoff = 0
+  min_obs_cutoff = 0
+  unit_of_time_key = 'minute'
+  fcst_time = 0
+  lvl_type1 = 'xxx'
+  scale_fac1 = 0
+  scaled_val1 = 0
+  lvl_type2 = 'xxx'
+  scale_fac2 = 0
+  scaled_val2 = 0
+  prob_num = 0
+  tot_num_prob = 0
+  type_of_prob1 = 'prob_below_lower_limit'
+  scale_fac_lower_limit = 0
+  scale_val_lower_limit = 0
+  scale_fac_upper_limit = 0
+  scale_val_upper_limit = 0
+  year_intvl = 0
+  mon_intvl = 0
+  day_intvl = 0
+  hour_intvl = 0
+  min_intvl = 0
+  sec_intvl = 0
+  num_time_range = 0
+  stat_miss_val = 0
+  type_of_stat_proc = 'AVE'
+  type_of_time_inc = 'reserved'
+  stat_unit_time_key = 'minute'
+  leng_time_range_stat = 0
+  stat_unit_time_key_succ = 'minute'
+  time_inc_betwn_succ_fld = 0
   ipdsnum=9
   ipdstmpllen=36
 
