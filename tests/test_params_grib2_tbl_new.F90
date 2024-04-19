@@ -7,12 +7,18 @@
 ! routine and write out the corresponding product discipline,
 ! parameter category and parameter number in table 4.2.
 !
-Program  params_grib2_tbl_new
+! Kyle Gerheiser, Edward Hartnett
+program test_params_grib2_tbl_new
   use grib2_all_tables_module
+  implicit none
+  
   integer idisc,icatg,iparm,locflg
   character*255 fl_nametbl
   character(len=30) :: pname(200)=''
-  !
+  integer :: i, ierr
+
+  print *, 'Testing params subroutines.'
+
   pname(1)='UCTMP'
   pname(2)='TMPADV'
   pname(3)='STRPRATE'
@@ -32,10 +38,11 @@ Program  params_grib2_tbl_new
 
   !    Opens and reads the GRIB2 Code Table 4.2 into an internal memory structure.
   !
-  fl_nametbl='params_grib2_tbl_new'
-  call open_and_read_4dot2( fl_nametbl, ierr )
+  fl_nametbl = 'params_grib2_tbl_new'
+  call open_and_read_4dot2(fl_nametbl, ierr)
   if ( ierr .ne. 0 ) then
      print*, 'Couldnt open table file - return code was ',ierr
+     stop 2
   endif
 
   !    Sorts and writes the GRIB2 Code Table 4.2 to an output file.
@@ -45,27 +52,25 @@ Program  params_grib2_tbl_new
   !        if ( ierr .ne. 0 ) then
   !         print*, 'Couldnt open output file - return code was ',ierr
   !        endif
-  !
-  !   Searches for a specified mnemonic within GRIB2 Code Table 4.2 and
-  !   returns the corresponding product discipline, parameter category and parameter number.
-  !
-  do i=1,15
-     idisc=0
-     icatg=0
-     iparm=0
+
+  ! Searches for a specified mnemonic within GRIB2 Code Table 4.2 and
+  ! returns the corresponding product discipline, parameter category and parameter number.
+  do i = 1,15
+     idisc = 0
+     icatg = 0
+     iparm = 0
      call search_for_4dot2_entry(pname(i),locflg, idisc, icatg, iparm, ierr)
-     if ( ierr .ne. 0 ) then
-        print *,' '
+     if (ierr .ne. 0) then
         print*, 'Could not find Mnemonic ', trim(pname(i)),' in grib2 table 4.2 '
-        print *, '    FAILED    '
-        print *,' '
-        cycle
+        stop 3
      end if
      write(6,'(A,A,3(A,I4),A)') ' Mnemonic = ',trim(pname(i)), &
-          ' is discipline= ',idisc,           &
-          ' ; category= ',icatg,             &
-          ' ; parameter= ',iparm, ' in grib2 table 4.2 '
-     print *, '    PASS    '
+          ' is discipline = ',idisc,           &
+          ' ; category = ',icatg,             &
+          ' ; parameter = ',iparm, ' in grib2 table 4.2 '
   end do
-  stop
-end Program params_grib2_tbl_new
+
+  print *, 'OK!'
+  print *, 'SUCCESS!'
+
+end Program test_params_grib2_tbl_new
