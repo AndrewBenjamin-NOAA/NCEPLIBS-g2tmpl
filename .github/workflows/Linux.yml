@@ -31,26 +31,19 @@ jobs:
     steps:
     - name: checkout
       uses: actions/checkout@v4
-      with: 
-        path: g2tmpl
-        submodules: true
 
     - name: build
       run: |
-        cd g2tmpl
-        mkdir build 
-        cd build
-        cmake ${{ matrix.config.options }} -DCMAKE_INSTALL_PREFIX=~/g2tmpl/install ..
-        make -j2 VERBOSE=1
+        cmake -B build ${{ matrix.config.options }} -DCMAKE_INSTALL_PREFIX=~/install
+        cmake --build build --parallel 2 --verbose
     
     - name: test
       run: |
         set -x
-        cd $GITHUB_WORKSPACE/g2tmpl/build
-        ctest --verbose --output-on-failure --rerun-failed
-        make install
+        ctest --test-dir build --verbose --output-on-failure --rerun-failed
+        cmake --install build
         if [ "${{ matrix.config.options }}" = "-DBUILD_SHARED_LIBS=ON" ]; then
-           ls -l ~/g2tmpl/install/lib/lib*.so || exit 1
+           ls -l ~/install/lib/lib*.so || exit 1
         else
-           ls -l ~/g2tmpl/install/lib/lib*.a || exit 1
+           ls -l ~/install/lib/lib*.a || exit 1
         fi

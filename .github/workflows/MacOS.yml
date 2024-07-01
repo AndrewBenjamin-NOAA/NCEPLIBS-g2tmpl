@@ -23,19 +23,13 @@ jobs:
 
     - name: checkout
       uses: actions/checkout@v4
-      with: 
-        path: g2tmpl
 
     - name: build
       run: |
-        cd g2tmpl
-        mkdir build 
-        cd build
-        cmake ..
-        make -j2
+        cmake -B build
+        cmake --build build --parallel 2 --verbose
     
     - name: test
       run: |
-        cd $GITHUB_WORKSPACE/g2tmpl/build
-        ctest --verbose --output-on-failure --rerun-failed 
+        ctest --test-dir build --verbose --output-on-failure --rerun-failed 
 

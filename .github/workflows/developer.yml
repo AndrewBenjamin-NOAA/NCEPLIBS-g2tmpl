@@ -47,7 +47,7 @@ jobs:
         gcovr --root .. -v  --html-details --exclude ../tests --exclude CMakeFiles --print-summary -o test-coverage.html
 
     - name: upload-test-coverage
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: g2tmpl-test-coverage
         path: |

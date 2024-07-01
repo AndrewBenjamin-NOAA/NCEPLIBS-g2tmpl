@@ -31,43 +31,24 @@ jobs:
 
     steps:
     
-    - name: checkout-g2tmpl
-      uses: actions/checkout@v4
-      with: 
-        path: g2tmpl
-
-    - name: spack-build-and-test
-      run: |
-        git clone -c feature.manyFiles=true https://github.com/jcsda/spack
-        . spack/share/spack/setup-env.sh
-        spack env create g2tmpl-env
-        spack env activate g2tmpl-env
-        cp $GITHUB_WORKSPACE/g2tmpl/spack/package.py $SPACK_ROOT/var/spack/repos/builtin/packages/g2tmpl/package.py
-        mv $GITHUB_WORKSPACE/g2tmpl $SPACK_ENV/g2tmpl
-        spack develop --no-clone g2tmpl@develop
-        spack add g2tmpl@develop%gcc@11 
-        spack external find cmake gmake
-        spack concretize
-        # Run installation and run CTest suite
-        spack install --verbose --fail-fast --test root
-        # Run 'spack load' to check for obvious errors in setup_run_environment
-        spack load g2tmpl
+    - name: "Build Spack package"
+      uses: NOAA-EMC/ci-test-spack-package@develop
+      with:
+        package-name: g2tmpl
+        custom-recipe: spack/package.py
+        use-repo-cache: true
+        spack-compiler: gcc
+        repo-cache-key-suffix: ${{ matrix.os }}-1
 
   # This job validates the Spack recipe by making sure each cmake build option is represented
   recipe-check:
     runs-on: ubuntu-latest
 
     steps:
-    
-    - name: checkout-g2tmpl
-      uses: actions/checkout@v4
-      with: 
-        path: g2tmpl
 
     - name: recipe-check
-      run: |
-        echo "If this jobs fails, look at the most recently output CMake option below and make sure that option appears in spack/package.py"
-        for opt in $(grep -ioP '^option\(\K(?!(ENABLE_DOCS))[^ ]+' $GITHUB_WORKSPACE/g2tmpl/CMakeLists.txt) ; do
-          echo "Checking for presence of '$opt' CMake option in package.py"
-          grep -cP "define.+\b${opt}\b" $GITHUB_WORKSPACE/g2tmpl/spack/package.py
-        done
+      uses: NOAA-EMC/ci-check-spack-recipe@develop
+      with:
+        recipe-file: package/spack/package.py
+        cmakelists-txt: package/CMakeLists.txt
+        ignore-list: ENABLE_DOCS
