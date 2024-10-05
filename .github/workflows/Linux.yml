@@ -14,10 +14,7 @@ concurrency:
 
 jobs:
   Linux:
-    runs-on: ubuntu-latest
-    env:
-      FC: gfortran
-      CC: gcc
+    runs-on: ubuntu-24.04
     strategy:      
       matrix:
         config:
@@ -27,13 +24,23 @@ jobs:
         - {
             options: "-DBUILD_SHARED_LIBS=ON"
           }
+        gcc-version: [12]
+        include:
+        - gcc-version: 14
 
     steps:
     - name: checkout
       uses: actions/checkout@v4
 
+    - name: get-gcc
+      run: |
+        if [ -z $(type -P gcc-${{ matrix.gcc-version }}) ]; then
+           sudo apt-get install gcc-${{ matrix.gcc-version }} gfortran-${{ matrix.gcc-version }}
+        fi
+
     - name: build
       run: |
+        export CC=gcc-${{ matrix.gcc-version }} ; export FC=gfortran-${{ matrix.gcc-version }}
         cmake -B build ${{ matrix.config.options }} -DCMAKE_INSTALL_PREFIX=~/install
         cmake --build build --parallel 2 --verbose
     
