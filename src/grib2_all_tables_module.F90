@@ -20,6 +20,7 @@
 !> 2021/04/20 | Boi Vuong | Updated table 4.3, 4.5,4.7 and on388_tablea
 !> 2023/03/30 | Andrew Benjamin | Added new entires to on388)_tablea
 !> 2024/02/23 | Andrew Benjamin | Added new subcenter to on388)_tablec
+!> 2024/12/20 | Alyson Stahl | Added multiple entries from 2024 WMO updates
 !>
 !> @author Jun Wang @date 2012/01/25
 module grib2_all_tables_module
@@ -142,7 +143,14 @@ module grib2_all_tables_module
   data table1_0(27) /version_no('v112020',26)/
   data table1_0(28) /version_no('v052021',27)/
   data table1_0(29) /version_no('v112021',28)/
-  data table1_0(30) /version_no('preoper',29)/
+  !
+  !   Added Version Number (12/20/2024)
+  !
+  data table1_0(30) /version_no('v052022',29)/
+  data table1_0(31) /version_no('v112022',30)/
+  data table1_0(32) /version_no('v062023',31)/
+  data table1_0(33) /version_no('v112023',32)/
+  data table1_0(34) /version_no('preoper',33)/
   !
   !
   type local_table_vers_no
@@ -178,6 +186,11 @@ module grib2_all_tables_module
   data table1_2(4) /sigreftime('obstime',3)/
   data table1_2(5) /sigreftime('missing',255)/
   !
+  !   Added Significance of Ref Time (12/20/2024)
+  !
+  data table1_2(6) /sigreftime('local',4)/
+  data table1_2(7) /sigreftime('sim_start',5)/
+  !
   !
   type prod_status
      character(len=20) :: prodstatuskey
@@ -200,6 +213,13 @@ module grib2_all_tables_module
   data table1_3(9) /prod_status('s2s_test',7)/
   data table1_3(10) /prod_status('unens_rreanl',8)/
   data table1_3(11) /prod_status('unens_rreanl_test',9)/
+  !
+  !   Added Production Status (12/20/2024)
+  !
+  data table1_3(12) /prod_status('copernic_rreanl',10)/
+  data table1_3(13) /prod_status('copernic_rreanl_test',11)/
+  data table1_3(14) /prod_status('dest_earth',12)/
+  data table1_3(15) /prod_status('dest_earth_test',13)/
   !
   !
   type type_of_data
@@ -269,6 +289,12 @@ module grib2_all_tables_module
   !   Added Generating Process (04/20/2021)
   !
   data table4_3(29) /type_of_gen_proc('local_prob_match_mean',200)/
+  !
+  !   Added Generating Process (12/20/2024)
+  !
+  data table4_3(30) /type_of_gen_proc('first_guess',19)/
+  data table4_3(31) /type_of_gen_proc('anal_inc',20)/
+  data table4_3(32) /type_of_gen_proc('init_inc',21)/
   !
   !
   type unit_of_time_range
@@ -414,6 +440,29 @@ module grib2_all_tables_module
   data table4_5(105) /fixed_surface_types('eff_layer_bottom_level',217)/
   data table4_5(106) /fixed_surface_types('eff_layer',218)/
   !
+  !   Added fixed surface levels (12/20/2024)
+  !
+  data table4_5(107) /fixed_surface_types('dep_level_unstable_parcel_air',17)/
+  data table4_5(108) /fixed_surface_types('dep_level_mixed_parcel_air',18)/
+  data table4_5(109) /fixed_surface_types('lowest_cloud_cover',19)/
+  data table4_5(110) /fixed_surface_types('conv_cloud_base',26)/
+  data table4_5(111) /fixed_surface_types('conv_cloud_top',27)/
+  data table4_5(112) /fixed_surface_types('spec_rad_centre_sun',30)/
+  data table4_5(113) /fixed_surface_types('solar_photosphere',31)/
+  data table4_5(114) /fixed_surface_types('ion_d_region_lev',32)/
+  data table4_5(115) /fixed_surface_types('ion_e_region_lev',33)/
+  data table4_5(116) /fixed_surface_types('ion_f1_region_lev',34)/
+  data table4_5(117) /fixed_surface_types('ion_f2_region_lev',35)/
+  data table4_5(118) /fixed_surface_types('sea_ice_lev',152)/
+  data table4_5(119) /fixed_surface_types('ocean_level_vert_eddy_diffus',171)/
+  data table4_5(120) /fixed_surface_types('ocean_level_rho_diff',172)/
+  data table4_5(121) /fixed_surface_types('top_snow_over_sea_ice',173)/
+  data table4_5(122) /fixed_surface_types('roof_lev',185)/
+  data table4_5(123) /fixed_surface_types('wall_lev',186)/
+  data table4_5(124) /fixed_surface_types('road_lev',187)/
+  data table4_5(125) /fixed_surface_types('melt_pond_top_surf',188)/
+  data table4_5(126) /fixed_surface_types('melt_pond_bottom_surf',189)/
+  !
   !
   type type_of_ens_fcst
      character(len=50) :: typeofensfcstkey
@@ -466,6 +515,10 @@ module grib2_all_tables_module
   data table4_7(22) /type_of_derive_fcst('percentile_value_75',203)/
   data table4_7(23) /type_of_derive_fcst('percentile_value_95',204)/
   !
+  !   Added type of derive forecast (12/20/2024)
+  !
+  data table4_7(24) /type_of_derive_fcst('var_all_ens_mem',10)/
+  !
   !
   !  Added Clustering Method Table 4.8 (06/26/2019)
   !
@@ -500,6 +553,10 @@ module grib2_all_tables_module
   data table4_9(7) /type_of_prob('prob_above_normal_cat',6)/
   data table4_9(8) /type_of_prob('prob_near_normal_cat',7)/
   data table4_9(9) /type_of_prob('prob_below_normal_cat',8)/
+  !
+  !   Added Probability Type (12/20/2024)
+  !
+  data table4_9(10) /type_of_prob('prob_counts_cat_boolean',9)/
   !
   !
   type statistical_processing_types
@@ -543,6 +600,12 @@ module grib2_all_tables_module
   data table4_10(31) /statistical_processing_types('quality_indicator',13)/
   data table4_10(32) /statistical_processing_types('variance',208)/
   data table4_10(33) /statistical_processing_types('confficient',209)/
+  !
+  !   Added Statistical Processing Type (12/20/2024)
+  !
+  data table4_10(34) /statistical_processing_types('severity',100)/
+  data table4_10(35) /statistical_processing_types('mode',101)/
+  data table4_10(36) /statistical_processing_types('index_proc',102)/
   !
   !
   type type_of_time_intervals
@@ -747,7 +810,12 @@ module grib2_all_tables_module
   data table4_233(125) /type_of_aerosol('aerosol_lo_absorption',62023)/
   data table4_233(126) /type_of_aerosol('volcanic_ash',62025)/
   ! Add new parameter (04/12/2022)
-  data table4_233(127) /type_of_aerosol('brown_carbon_dry',63034)/
+  ! Corrected code figure (12/20/2024)
+  data table4_233(127) /type_of_aerosol('brown_carbon_dry',62036)/
+  !
+  !   Added Aerosol Type (12/20/2024)
+  !
+  data table4_233(128) /type_of_aerosol('oxygen',38)/
   !
   !
   type type_of_orig_field_vals
@@ -814,6 +882,11 @@ module grib2_all_tables_module
   data table5_0(9) /type_of_packingmethod('spectral_complex_packing',51)/
   data table5_0(10) /type_of_packingmethod('simple_packing_log_preprcs',61)/
   data table5_0(11) /type_of_packingmethod('run_length_packing_lvl_val',200)/
+  !
+  !   Added Packing Method (12/20/2024)
+  !
+  data table5_0(12) /type_of_packingmethod('ccsds_lossless',42)/
+  data table5_0(13) /type_of_packingmethod('spectral_limited_area_complex',53)/
   !
   !
   type origin_centers
@@ -1046,6 +1119,15 @@ module grib2_all_tables_module
   data on388_table0(217) /origin_centers('ncsa_argentina',147)/
   data on388_table0(218) /origin_centers('brazilian_decea',148)/
   !
+  !       Added original center (12/20/2024)
+  !
+  data on388_table0(219) /origin_centers('nasa',173)/
+  data on388_table0(220) /origin_centers('isdm_meds',174)/
+  data on388_table0(221) /origin_centers('cimss',176)/
+  data on388_table0(222) /origin_centers('niwa',204)/
+  data on388_table0(223) /origin_centers('opera',247)/
+  data on388_table0(224) /origin_centers('cosmo',250)/
+  !
   !
   type gen_proc
      character(len=30) :: genprockey
@@ -1189,6 +1271,14 @@ module grib2_all_tables_module
   data on388_tablea(120) /gen_proc('extra_trop_storm_surge_atl_3d',21)/
   data on388_tablea(121) /gen_proc('extra_trop_storm_surge_pac_3d',22)/
   data on388_tablea(122) /gen_proc('extra_trop_storm_surge_micro_3',23)/
+  !
+  !   Added new entries in tablea (12/20/2024)
+  !
+  data on388_tablea(123) /gen_proc('rtofs',85)/
+  data on388_tablea(124) /gen_proc('national_blend',104)/
+  data on388_tablea(125) /gen_proc('urma',118)/
+  data on388_tablea(126) /gen_proc('wam',119)/
+  data on388_tablea(127) /gen_proc('ccpa',184)/
 
 contains
   !

@@ -107,8 +107,16 @@ program test_all_tables
   if (val1 .ne. 27) stop 2
   call get_g2_versionno('v112021', val1, ierr)
   if (val1 .ne. 28) stop 2
-  call get_g2_versionno('preoper', val1, ierr)
+  call get_g2_versionno('v052022', val1, ierr)
   if (val1 .ne. 29) stop 2
+  call get_g2_versionno('v112022', val1, ierr)
+  if (val1 .ne. 30) stop 2
+  call get_g2_versionno('v062023', val1, ierr)
+  if (val1 .ne. 31) stop 2
+  call get_g2_versionno('v112023', val1, ierr)
+  if (val1 .ne. 32) stop 2
+  call get_g2_versionno('preoper', val1, ierr)
+  if (val1 .ne. 33) stop 2
   call get_g2_versionno('xxx', val1, ierr)
   if (ierr .ne. 9) stop 2
 
@@ -139,6 +147,10 @@ program test_all_tables
   if (val1 .ne. 2) stop 4
   call get_g2_sigreftime('obstime', val1, ierr)
   if (val1 .ne. 3) stop 4
+  call get_g2_sigreftime('local', val1, ierr)
+  if (val1 .ne. 4) stop 4
+  call get_g2_sigreftime('sim_start', val1, ierr)
+  if (val1 .ne. 5) stop 4
   call get_g2_sigreftime('missing', val1, ierr)
   if (val1 .ne. 255) stop 4
   call get_g2_sigreftime('xxxx', val1, ierr)
@@ -167,6 +179,14 @@ program test_all_tables
   if (val1 .ne. 8) stop 5
   call get_g2_prodstatus('unens_rreanl_test', val1, ierr)
   if (val1 .ne. 9) stop 5
+  call get_g2_prodstatus('copernic_rreanl', val1, ierr)
+  if (val1 .ne. 10) stop 5
+  call get_g2_prodstatus('copernic_rreanl_test', val1, ierr)
+  if (val1 .ne. 11) stop 5
+  call get_g2_prodstatus('dest_earth', val1, ierr)
+  if (val1 .ne. 12) stop 5
+  call get_g2_prodstatus('dest_earth_test', val1, ierr)
+  if (val1 .ne. 13) stop 5
   call get_g2_prodstatus('xxxx', val1, ierr)
   if (ierr .ne. 9) stop 5
 
@@ -256,6 +276,12 @@ program test_all_tables
   if (val1 .ne. 199) stop 7
   call get_g2_typeofgenproc('local_prob_match_mean', val1, ierr)
   if (val1 .ne. 200) stop 7
+  call get_g2_typeofgenproc('first_guess', val1, ierr)
+  if (val1 .ne. 19) stop 7
+  call get_g2_typeofgenproc('anal_inc', val1, ierr)
+  if (val1 .ne. 20) stop 7
+  call get_g2_typeofgenproc('init_inc', val1, ierr)
+  if (val1 .ne. 21) stop 7
   call get_g2_typeofgenproc('xxxx', val1, ierr)
   if (ierr .ne. 9) stop 7
 
@@ -500,6 +526,46 @@ program test_all_tables
   if (val1 .ne. 217) stop 9
   call get_g2_fixedsurfacetypes('eff_layer', val1, ierr)
   if (val1 .ne. 218) stop 9
+  call get_g2_fixedsurfacetypes('dep_level_unstable_parcel_air', val1, ierr)
+  if (val1 .ne. 17) stop 9
+  call get_g2_fixedsurfacetypes('dep_level_mixed_parcel_air', val1, ierr)
+  if (val1 .ne. 18) stop 9
+  call get_g2_fixedsurfacetypes('lowest_cloud_cover', val1, ierr)
+  if (val1 .ne. 19) stop 9
+  call get_g2_fixedsurfacetypes('conv_cloud_base', val1, ierr)
+  if (val1 .ne. 26) stop 9
+  call get_g2_fixedsurfacetypes('conv_cloud_top', val1, ierr)
+  if (val1 .ne. 27) stop 9
+  call get_g2_fixedsurfacetypes('spec_rad_centre_sun', val1, ierr)
+  if (val1 .ne. 30) stop 9
+  call get_g2_fixedsurfacetypes('solar_photosphere', val1, ierr)
+  if (val1 .ne. 31) stop 9
+  call get_g2_fixedsurfacetypes('ion_d_region_lev', val1, ierr)
+  if (val1 .ne. 32) stop 9
+  call get_g2_fixedsurfacetypes('ion_e_region_lev', val1, ierr)
+  if (val1 .ne. 33) stop 9
+  call get_g2_fixedsurfacetypes('ion_f1_region_lev', val1, ierr)
+  if (val1 .ne. 34) stop 9
+  call get_g2_fixedsurfacetypes('ion_f2_region_lev', val1, ierr)
+  if (val1 .ne. 35) stop 9
+  call get_g2_fixedsurfacetypes('sea_ice_lev', val1, ierr)
+  if (val1 .ne. 152) stop 9
+  call get_g2_fixedsurfacetypes('ocean_level_vert_eddy_diffus', val1, ierr)
+  if (val1 .ne. 171) stop 9
+  call get_g2_fixedsurfacetypes('ocean_level_rho_diff', val1, ierr)
+  if (val1 .ne. 172) stop 9
+  call get_g2_fixedsurfacetypes('top_snow_over_sea_ice', val1, ierr)
+  if (val1 .ne. 173) stop 9
+  call get_g2_fixedsurfacetypes('roof_lev', val1, ierr)
+  if (val1 .ne. 185) stop 9
+  call get_g2_fixedsurfacetypes('wall_lev', val1, ierr)
+  if (val1 .ne. 186) stop 9
+  call get_g2_fixedsurfacetypes('road_lev', val1, ierr)
+  if (val1 .ne. 187) stop 9
+  call get_g2_fixedsurfacetypes('melt_pond_top_surf', val1, ierr)
+  if (val1 .ne. 188) stop 9
+  call get_g2_fixedsurfacetypes('melt_pond_bottom_surf', val1, ierr)
+  if (val1 .ne. 189) stop 9
   call get_g2_fixedsurfacetypes('xxx', val1, ierr)
   if (ierr .ne. 9) stop 9
 
@@ -570,6 +636,12 @@ program test_all_tables
   if (val1 .ne. 208) stop 10
   call get_g2_statprocesstypes('confficient', val1, ierr)
   if (val1 .ne. 209) stop 10
+  call get_g2_statprocesstypes('severity', val1, ierr)
+  if (val1 .ne. 100) stop 10
+  call get_g2_statprocesstypes('mode', val1, ierr)
+  if (val1 .ne. 101) stop 10
+  call get_g2_statprocesstypes('index_proc', val1, ierr)
+  if (val1 .ne. 102) stop 10
   call get_g2_statprocesstypes('xxxxx', val1, ierr)
   if (ierr .ne. 9) stop 10
 
@@ -884,9 +956,11 @@ program test_all_tables
   call get_g2_typeofaerosol('volcanic_ash', val1, ierr)
   if (val1 .ne. 62025) stop 13
   call get_g2_typeofaerosol('brown_carbon_dry', val1, ierr)
-  if (val1 .ne. 63034) stop 13
+  if (val1 .ne. 62036) stop 13
   call get_g2_typeofaerosol('', val1, ierr)
   if (val1 .ne. 65535) stop 13
+  call get_g2_typeofaerosol('oxygen', val1, ierr)
+  if (val1 .ne. 38) stop 13
   call get_g2_typeofaerosol('xxxx', val1, ierr)  
   if (ierr .ne. 9) stop 13
   
@@ -1327,6 +1401,18 @@ program test_all_tables
   if (val1 .ne. 147) stop 14
   call get_g2_on388origincenters('brazilian_decea', val1, ierr)
   if (val1 .ne. 148) stop 14
+  call get_g2_on388origincenters('nasa', val1, ierr)
+  if (val1 .ne. 173) stop 14
+  call get_g2_on388origincenters('isdm_meds', val1, ierr)
+  if (val1 .ne. 174) stop 14
+  call get_g2_on388origincenters('cimss', val1, ierr)
+  if (val1 .ne. 176) stop 14
+  call get_g2_on388origincenters('niwa', val1, ierr)
+  if (val1 .ne. 204) stop 14
+  call get_g2_on388origincenters('opera', val1, ierr)
+  if (val1 .ne. 247) stop 14
+  call get_g2_on388origincenters('cosmo', val1, ierr)
+  if (val1 .ne. 250) stop 14
   call get_g2_on388origincenters('xxxx', val1, ierr)
   if (ierr .ne. 9) stop 14
 
@@ -1569,6 +1655,22 @@ program test_all_tables
   if (val1 .ne. 134) stop 15
   call get_g2_on388genproc('hafs', val1, ierr)
   if (val1 .ne. 135) stop 15
+  call get_g2_on388genproc('extra_trop_storm_surge_atl_3d', val1, ierr)
+  if (val1 .ne. 21) stop 15
+  call get_g2_on388genproc('extra_trop_storm_surge_pac_3d', val1, ierr)
+  if (val1 .ne. 22) stop 15
+  call get_g2_on388genproc('extra_trop_storm_surge_micro_3', val1, ierr)
+  if (val1 .ne. 23) stop 15
+  call get_g2_on388genproc('rtofs', val1, ierr)
+  if (val1 .ne. 85) stop 15
+  call get_g2_on388genproc('national_blend', val1, ierr)
+  if (val1 .ne. 104) stop 15
+  call get_g2_on388genproc('urma', val1, ierr)
+  if (val1 .ne. 118) stop 15
+  call get_g2_on388genproc('wam', val1, ierr)
+  if (val1 .ne. 119) stop 15
+  call get_g2_on388genproc('ccpa', val1, ierr)
+  if (val1 .ne. 184) stop 15
   call get_g2_on388genproc('xxxx', val1, ierr)
   if (ierr .ne. 9) stop 15
 
@@ -1645,6 +1747,10 @@ program test_all_tables
   if (val1 .ne. 61) stop 19
   call get_g2_sec5packingmethod('run_length_packing_lvl_val', val1, ierr)
   if (val1 .ne. 200) stop 19
+  call get_g2_sec5packingmethod('ccsds_lossless', val1, ierr)
+  if (val1 .ne. 42) stop 19
+  call get_g2_sec5packingmethod('spectral_limited_area_complex', val1, ierr)
+  if (val1 .ne. 53) stop 19
   call get_g2_sec5packingmethod('xxxxx', val1, ierr)
   if (ierr .ne. 9) stop 19
 
@@ -1711,6 +1817,8 @@ program test_all_tables
   if (val1 .ne. 203) stop 21
   call get_g2_typeofderivefcst('percentile_value_95', val1, ierr)
   if (val1 .ne. 204) stop 21
+  call get_g2_typeofderivefcst('var_all_ens_mem', val1, ierr)
+  if (val1 .ne. 10) stop 21
   call get_g2_typeofderivefcst('xxxx', val1, ierr)
   if (ierr .ne. 9) stop 21
 
@@ -1741,6 +1849,8 @@ program test_all_tables
   if (val1 .ne. 7) stop 23
   call get_g2_typeofprob('prob_below_normal_cat', val1, ierr)
   if (val1 .ne. 8) stop 23
+  call get_g2_typeofprob('prob_counts_cat_boolean', val1, ierr)
+  if (val1 .ne. 9) stop 23
   call get_g2_typeofprob('xxxx', val1, ierr)
   if (ierr .ne. 9) stop 23
   
