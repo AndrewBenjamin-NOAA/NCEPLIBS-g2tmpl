@@ -1165,7 +1165,7 @@ module grib2_all_tables_module
   data on388_tablea(26) /gen_proc('t80l18mrf',69)/
   data on388_tablea(27) /gen_proc('qlm',70)/
   data on388_tablea(28) /gen_proc('fogfm_opc',73)/
-  data on388_tablea(29) /gen_proc('gulf_of_mex_wind_wave',74)/
+  data on388_tablea(29) /gen_proc('gulf_of_amer_wind_wave',74)/
   data on388_tablea(30) /gen_proc('gulf_of_alas_wind_wave',75)/
   data on388_tablea(31) /gen_proc('bias_corr_mrf',76)/
   data on388_tablea(32) /gen_proc('t126l28gfs',77)/
