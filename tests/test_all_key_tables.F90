@@ -1473,7 +1473,7 @@ program test_all_tables
   if (val1 .ne. 70) stop 15
   call get_g2_on388genproc('fogfm_opc', val1, ierr)
   if (val1 .ne. 73) stop 15
-  call get_g2_on388genproc('gulf_of_mex_wind_wave', val1, ierr)
+  call get_g2_on388genproc('gulf_of_amer_wind_wave', val1, ierr)
   if (val1 .ne. 74) stop 15
   call get_g2_on388genproc('gulf_of_alas_wind_wave', val1, ierr)
   if (val1 .ne. 75) stop 15
